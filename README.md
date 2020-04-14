@@ -23,11 +23,11 @@ The MCCS API is built based on the following data model and functionality:
 
 **Create a standalone node that anyone can use in their community**
 
-1. **DONE** - Initial [alpha release](https://github.com/ic3network/mccs-alpha) to enable OCN to prove the concept
+1. **DONE** - [Proof of concept](https://github.com/ic3network/mccs-alpha)
     - Provide a web-based application that enables OCN members to:
         - Discover each other's products/services and needs
         - Facilitate MC transfers between them
-2. **IN PROGRESS** - [API alpha release](https://github.com/ic3network/mccs-alpha-api)
+2. **IN PROGRESS** - [API](https://github.com/ic3network/mccs-alpha-api)
     - Enable developers to create a customizable user interface (any language, different users flows, device optimization (i.e., mobile app), etc.)
     - Exposes MCCS functionality for integration with other systems (e.g., instruct a MC transfer from within another application)
 3. Build a front-end user interface for MCCS node admins and MCCS node users using the new API
@@ -44,6 +44,6 @@ The MCCS API is built based on the following data model and functionality:
 
 ## Get Involved
 
-Take a look at our [alpha release](https://github.com/ic3network/mccs-alpha) (proof of concept - will not be developed further) and [API](https://github.com/ic3network/mccs-alpha-api) (actively being developed) repositories to see the work we have done so far.
+Take a look at our [proof of concept](https://github.com/ic3network/mccs-alpha) (will not be developed further) and [API](https://github.com/ic3network/mccs-alpha-api) (actively being developed) repositories to see the work we have done so far.
 
 We are looking for talented individuals with relevant technical (e.g., Golang, React/Javascript, front-end web design) or governance (e.g., credit risk management) background to help design and develop MCCS. If you are interested, please reach out to us at _mccs_ at _ic3_ dot _dev_.
