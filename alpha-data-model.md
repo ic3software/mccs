@@ -1,6 +1,6 @@
 # Data Model - Alpha Release
 
-The data model of MCCS is split across two databases: MongoDB and PostgreSQL.
+The data model of MCCS is split across two databases: MongoDB and PostgreSQL. The SQL (PostgreSQL) DB records balances and MC transfers, since an [ACID](https://en.wikipedia.org/wiki/ACID) DB is required for consistent double-entry bookkeeping. The NoSQL (MongoDB) DB records all user, entity and category/tag information and was selected due to its flexibility given that MCCS' requirements will grow and change.
 
 The details of the data fields for each table in the data model are covered in the description of [MCCS functionality](alpha-functionality.md).
 

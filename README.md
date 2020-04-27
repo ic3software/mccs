@@ -12,7 +12,7 @@ At its core, MCCS is an accounting system that facilitates trading amongst a gro
 
 ## Design
 
-The MCCS API is built based on the following data model and functionality:
+The MCCS API is based on the following data model and functionality:
 
 - [Data Model](alpha-data-model.md)
 - [Functionality](alpha-functionality.md)
@@ -30,12 +30,13 @@ The MCCS API is built based on the following data model and functionality:
 2. **IN PROGRESS** - [API](https://github.com/ic3network/mccs-alpha-api)
     - Enable developers to create a customizable user interface (any language, different users flows, device optimization (i.e., mobile app), etc.)
     - Exposes MCCS functionality for integration with other systems (e.g., instruct a MC transfer from within another application)
-3. Build a front-end user interface for MCCS node admins and MCCS node users using the new API
+3. Front-End UI
+    - Build a front-end user interface for MCCS node admins and users using the API
     - Provide an example for front-end developers for further customization and localization
 
 ### Phase 2 - Interconnected MCCS Nodes (beta release)
 
-**Connect two or more standalone nodes together into a network to enable inter-node trade discovery and mutual credit transfers**
+**Connect two or more nodes together into a network to enable inter-node mutual credit transfers**
 
 1. Define and design the communication protocol for MCCS nodes
     - Currently reviewing the [Credit Commons](https://www.creditcommons.net/) [Protocol](https://gitlab.com/credit-commons-software-stack/credit-commons-microservices) as a protocol candidate
