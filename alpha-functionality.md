@@ -73,6 +73,8 @@ A user can also request the current MC balance of their entity's account.
 
 ## Admin Functionality
 
+🚧 **This is a work in progress** 🚧
+
 There are five main functions that the MCCS web application provides to admin users:
 
 1. **Manage users** - view, modify and delete user records
