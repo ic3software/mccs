@@ -8,14 +8,14 @@ The mutual credit communication system (MCCS) is a web application that enables 
 > 
 > Mutual credit provides a mechanism for businesses to trade without money, via a credit clearing system. A credit clearing system is an arrangement in which a group of traders, each of whom is both a buyer and a seller, agree to allocate each other sufficient credit to facilitate their transactions within the network. [🔗](https://open.coop/collaborate/mutual-credit/)
 
-At its core, MCCS is an accounting system that facilitates trading amongst a group of traders who initiate mutual credit (MC) transfers between each other using the MCCS web application. Group governance could be implemented in a number of different ways (see the [Open Credit Network](https://opencredit.network) (OCN) for example), but that is beyond the scope of MCCS, which is simply the web application that facilitates trade discovery and MC transfers between its users.
+At its core, MCCS is an accounting system that facilitates trading amongst a group of traders who initiate mutual credit (MC) transfers between each other using the MCCS web application. Group governance could be implemented in a number of different ways (see the [Open Credit Network](https://opencredit.network) (OCN) for example), but that is beyond the scope of MCCS, which is simply the web application that facilitates trade discovery via a public directory of members and MC transfers between them.
 
 ## Design
 
 The MCCS API is based on the following data model and functionality:
 
-- [Data Model](alpha-data-model.md)
-- [Functionality](alpha-functionality.md)
+- [Alpha Data Model](alpha-data-model.md)
+- [Alpha Functionality](alpha-functionality.md)
 
 ## Roadmap
 
@@ -45,6 +45,6 @@ The MCCS API is based on the following data model and functionality:
 
 ## Get Involved
 
-Take a look at our [proof of concept](https://github.com/ic3network/mccs-alpha) (will not be developed further) and [API](https://github.com/ic3network/mccs-alpha-api) (actively being developed) repositories to see the work we have done so far.
+Take a look at our [API repository](https://github.com/ic3network/mccs-alpha-api) to see the work we have done so far.
 
 We are looking for talented individuals with relevant technical (e.g., Golang, React/Javascript, front-end web design) or governance (e.g., credit risk management) background to help design and develop MCCS. If you are interested, please reach out to us at _mccs_ at _ic3_ dot _dev_.

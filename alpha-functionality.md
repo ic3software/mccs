@@ -5,6 +5,8 @@
 
 ## User Functionality
 
+[Read the API documentation](https://documenter.getpostman.com/view/10168004/SWTD7wqB?version=latest)
+
 There are four main functions that the MCCS web application provides to end users:
 
 1. **Manage accounts** - create and modify user records and their related entity details
@@ -61,7 +63,7 @@ To enable this two step transfer process, state has been introduced into transfe
 
 1. **Initiated** - a transfer has been initiated by either the payer or payee of the MCs.
 2. **Completed** - a transfer is completed because the payee/payer has authorized the credit to/debit from their account that was proposed in the initiated transfer.
-3. **Cancelled** - a transfer can be cancelled because (a) the initiator cancels it before the receiver has a chance to accept it, (b) the receiver can decide to reject the transfer, or (c) the transfer is not allowed by the system due to balance limits or other reasons even if the receiver accepts it.
+3. **Cancelled** - a transfer can be cancelled because (a) the initiator cancels it before the receiver has a chance to accept it, (b) the receiver can decide to reject the transfer, or (c) the transfer is not allowed by the system due to balance limits or other reasons even if the receiver accepts it. The `cancellationReason` field can be filled in to explain why the transfers was cancelled or rejected and is included in the notification email sent to the other party.
 
 Only transfers in the completed state will affect the balances of the payer's and payee's accounts. Cancelled transfers will trigger an email to both the payer and payee to inform them of the cancelled transfer.
 
@@ -73,56 +75,64 @@ A user can also request the current MC balance of their entity's account.
 
 ## Admin Functionality
 
-🚧 **This is a work in progress** 🚧
+[Read the API documentation](https://documenter.getpostman.com/view/10168004/SzYYyy7e?version=latest)
 
-There are five main functions that the MCCS web application provides to admin users:
+There are six main functions that the MCCS Admin API provides to admins:
 
-1. **Manage users** - view, modify and delete user records
-2. **Manage entities** - view, modify and delete entity records
-3. **Manage categories and tags** - view, modify and delete categories and tags
-4. **Manage transfers** - view user transfers and initiate transfers on behalf of users
-5. **Audit logs** - view all admin and user activity that modifies DB data (change of details, transfers, etc.)
+1. **Manage account** - admin login/logout and password management
+2. **Manage categories and tags** - view, modify and delete categories and tags
+3. **Manage users** - view, modify and delete user records
+4. **Manage entities** - view, modify and delete entity records
+5. **Manage transfers** - view user transfers and initiate transfers on behalf of users
+6. **Review logs** - view all admin and user activity that modifies DB data (change of details, transfers, etc.)
 
-### Manage Users
+### Manage Account
 
-- Can only change user email to a unique email (can't already be used by another user)
-- Future-proofed entity mapping by storing an array of linked entities
-- `email` needs to be renamed to `userEmail` (TODO)
+Account management for admins includes:
 
-### Manage Entities
+- Login/logout
+- Reset a lost password
+- Change password
 
-- `email` needs to be renamed to `userEmail` (TODO)
-- `accountNumber` is the unique key that links an in MongoDB to its transfer and balance data in PostgreSQL
-- `status` should be renamed to `entityStatus` (TODO)
-- `entityStatus` drives functionality available to an entity and can have 6 possible values (TODO - _how to split these so trading status is not dependent on directory status?_):
-    - `pending`
-    - `rejected`
-    - `accepted`
-    - `tradingPending`
-    - `tradingAccepted`
-    - `tradingRejected`
-- Future-proofed user mapping by storing an array of linked users
-- Explain purpose of `dailyNotification` boolean field
-- `turnover` should be renamed `expectedTurnover` since it is only an estimate provided by the user that needs to be verified (historic accounts and/or volumes in MCCS over time)
+Because admins will change infrequently and because introducing an admin user is a sensitive operation, new admins are added and retired admins are removed by posting update queries directly to the Mongo database in the `adminUsers` collection.
 
 ### Manage Categories and Tags
 
-- Explain purpose of `offerAddedAt` and `wantAddedAt` datetime fields
+Tags are created by users to describe their entities. Each entity can have up to 10 tags associated to it, and admins can modify tags (e.g., to fix spelling errors) or delete them. When a tag is modified or deleted, all entities that had that tag are updated accordingly.
+
+Categories are tags as well, but they are created by admins and assigned by admins to each entity. Categories give admins a way to curate a list of the entities. Usually an admin will assign just one category to an entity, but if it makes sense to assign two or more categories then they are able to do so.
+
+### Manage Users
+
+Users can be searched and viewed, and their details can be updated and deleted by an admin. Further, it is possible to associate a single user to more than one entity, or several users to one single entity.
+
+Password reset emails are sent to the email address of the user when a new password is requested.
+
+### Manage Entities
+
+Each entity is assigned a permanent account number which is used for MC transfers. The `accountNumber` is the unique key that links an entity in the Mongo database to its transfer and balance data in the PostgreSQL database.
+
+An email address for the entity can be specified that is different from the email of the user who creates the entity's account. Having this separate email means that a shared email address can be used to receive emails for the entity. Emails sent to this email address include:
+- The welcome email sent after first signing up
+- The daily email of new tag matches
+- Contact emails sent to an entity by another entity after finding them in the directory
+- Notifications about pending or completed MC transfers to/from the entity
+
+Each entity has a `status` field that drives functionality available to an entity, which can have 6 possible values:
+
+1. `pending`  - has applied to be listed in the directory
+2. `rejected` - not accepted for listing in the directory
+3. `accepted` - listed in directory
+4. `tradingPending` - listed in directory and applied to make MC transfers
+5. `tradingRejected` - listed in directory but not accepted to make MC transfers
+6. `tradingAccepted` - listed in directory and able to make MC transfers
+
+Entities with a status from 3 to 6 will be listed in the public directory. Only entities with status 6 (`tradingAccepted`) will be able to make MC transfers to other entities with that same status.
 
 ### Manage Transfers
 
-- `account_number` is the unique key that links transfer and balance data in PostgreSQL to an entity in MongoDB
-- Explain `cancellation_reason` field
-- `status` should be renamed to `transferStatus`, and can have 3 possible values:
-    - `initiated`
-    - `cancelled`
-    - `completed`
-- Explain `initiated_by` field
-- Explain `from_*` and `to_*` fields
-- Explain the `type` field (future-proofing different transaction types in addition to user-initiated)
+Although it should rarely be used, admins have the ability to transfer MC on behalf of users.
 
-TODO - Link `postgresql_accounts` and `postgresql_balance_limits` by `account_number` instead of `id`
+### Review Logs
 
-### Audit Logs
-
-Logs show all actions by users and admins that change the data in MCCS' DBs. IOW, all POST, PATCH and DELETE actions performed are logged stating the prior and subsequent state of all affected DB fields (for changes) or what information has been created (POSTs) or removed (DELETEs).
+Logs show all actions by users and admins that change the data in MCCS' databases. IOW, all POST, PATCH and DELETE actions performed are logged stating the prior and subsequent state of all affected DB fields (for changes) or what information has been created (POSTs) or removed (DELETEs).
