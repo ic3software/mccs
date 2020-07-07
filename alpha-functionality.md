@@ -118,6 +118,8 @@ An email address for the entity can be specified that is different from the emai
 - Contact emails sent to an entity by another entity after finding them in the directory
 - Notifications about pending or completed MC transfers to/from the entity
 
+#### Entity Status
+
 Each entity has a `status` field that drives functionality available to an entity, which can have 6 possible values:
 
 1. `pending`  - has applied to be listed in the directory
@@ -127,7 +129,11 @@ Each entity has a `status` field that drives functionality available to an entit
 5. `tradingRejected` - listed in directory but not accepted to make MC transfers
 6. `tradingAccepted` - listed in directory and able to make MC transfers
 
-Entities with a status from 3 to 6 will be listed in the public directory. Only entities with status 6 (`tradingAccepted`) will be able to make MC transfers to other entities with that same status.
+Admins are able to set each entity to any one of the six possible values above. The default value for a newly-created entity is `pending`.
+
+Entities with a status from 3 to 6 will be listed in the public directory. They will also be able to call the `POST /favorites` and `POST /send-email` endpoints.
+
+Only entities with status 6 (`tradingAccepted`) will be able to make MC transfers to other entities with that same status. Also, when a `tradingAccepted` entity views the details of another `tradingAccepted` entity through either the `GET /entities` or `GET /entities/{entityID}` endpoints, the email address for the searched entity will also be returned.
 
 ### Manage Transfers
 
