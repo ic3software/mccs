@@ -131,7 +131,7 @@ Each entity has a `status` field that drives functionality available to an entit
 
 Admins are able to set each entity to any one of the six possible values above. The default value for a newly-created entity is `pending`.
 
-Entities with a status from 3 to 6 will be listed in the public directory. They will also be able to call the `POST /favorites` and `POST /send-email` endpoints.
+Entities with a status from 3 to 6 will be listed in the public directory. They will also be able to call the `POST /send-email` endpoint.
 
 Only entities with status 6 (`tradingAccepted`) will be able to make MC transfers to other entities with that same status. Also, when a `tradingAccepted` entity views the details of another `tradingAccepted` entity through either the `GET /entities` or `GET /entities/{entityID}` endpoints, the email address for the searched entity will also be returned.
 
