@@ -141,4 +141,4 @@ Although it should rarely be used, admins have the ability to transfer MC on beh
 
 ### Review Logs
 
-Logs show all actions by users and admins that change the data in MCCS' databases. IOW, all POST, PATCH and DELETE actions performed are logged stating the prior and subsequent state of all affected DB fields (for changes) or what information has been created (POSTs) or removed (DELETEs).
+Logs show all actions by users and admins that change the data in MCCS' databases. IOW, all POST, PATCH and DELETE actions performed are logged stating the prior and subsequent state of all affected DB fields (for PATCHes) or what information has been created (POSTs) or removed (DELETEs).
