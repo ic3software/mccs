@@ -27,7 +27,7 @@ The MCCS API is based on the following data model and functionality:
     - Provide a web-based application that enables OCN members to:
         - Discover each other's products/services and needs
         - Facilitate MC transfers between them
-2. **IN PROGRESS** - [API](https://github.com/ic3network/mccs-alpha-api)
+2. **DONE** - [API](https://github.com/ic3network/mccs-alpha-api)
     - Enable developers to create a customizable user interface (any language, different users flows, device optimization (i.e., mobile app), etc.)
     - Exposes MCCS functionality for integration with other systems (e.g., instruct a MC transfer from within another application)
 3. Front-End UI
@@ -39,7 +39,6 @@ The MCCS API is based on the following data model and functionality:
 **Connect two or more nodes together into a network to enable inter-node mutual credit transfers**
 
 1. Define and design the communication protocol for MCCS nodes
-    - Currently reviewing the [Credit Commons](https://www.creditcommons.net/) [Protocol](https://gitlab.com/credit-commons-software-stack/credit-commons-microservices) as a protocol candidate
 2. Extend the API to facilitate interconnected nodes
 3. Extend the user and admin front ends
 

@@ -5,7 +5,7 @@
 
 ## User Functionality
 
-[Read the API documentation](https://documenter.getpostman.com/view/10168004/SWTD7wqB?version=latest)
+[Read the API documentation](https://app.swaggerhub.com/apis-docs/ic3network/mccs-alpha-user-api/1)
 
 There are four main functions that the MCCS web application provides to end users:
 
@@ -75,7 +75,7 @@ A user can also request the current MC balance of their entity's account.
 
 ## Admin Functionality
 
-[Read the API documentation](https://documenter.getpostman.com/view/10168004/SzYYyy7e?version=latest)
+[Read the API documentation](https://app.swaggerhub.com/apis-docs/ic3network/mccs-alpha-admin-api/1)
 
 There are six main functions that the MCCS Admin API provides to admins:
 
