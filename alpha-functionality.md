@@ -5,7 +5,7 @@
 
 ## User Functionality
 
-[Read the API documentation](https://documenter.getpostman.com/view/10168004/SWTD7wqB?version=latest)
+[Read the API documentation](https://app.swaggerhub.com/apis-docs/ic3network/mccs-alpha-user-api/1)
 
 There are four main functions that the MCCS web application provides to end users:
 
@@ -48,7 +48,7 @@ The following rules will be enforced by MCCS:
 
 - Every increase in one account must be offset by an equal decrease in another account (or set of accounts in the case of collecting fees). So if Account A is decreased by 50, Account B will be increased by 50 (or Account B could be increased by 49 and Account C by 1).
 - Given the above, the sum total of all transfers, and the overall balance in the system must always equal zero. These are the two foundational principles of double-entry bookkeeping and they must be enforced at all times.
-- In order to start the transfer process, some accounts will need to be able to have a negative balance (see Account A above), but not all accounts may need be allowed to have a negative balance. MCCS admins will need to make a decision about which entities may have an account whose balance can be negative.
+- In order to start the transfer process, some accounts will need to be able to have a negative balance (see Account A above), but not all accounts are required to have the ability to run a negative balance. MCCS admins will need to make a decision about which entities may have an account whose balance can be negative.
 - There needs to be a limit to the positive and negative balances for accounts (maxPositiveBalance and maxNegativeBalance). A transfer can only be processed if the resulting balances of all accounts involved in the transfer do not exceed these limits. Continuing the example above, if the maxNegativeBalance for Account A is set to -40, the transaction above would not be processed because the balance of Account A would be exceeding this limit by going to -50. And if the maxNegativeBalance for an account is set to 0, then that account is not allowed to have a negative balance at all.
 
 #### Initiating Debits or Credits
@@ -75,7 +75,7 @@ A user can also request the current MC balance of their entity's account.
 
 ## Admin Functionality
 
-[Read the API documentation](https://documenter.getpostman.com/view/10168004/SzYYyy7e?version=latest)
+[Read the API documentation](https://app.swaggerhub.com/apis-docs/ic3network/mccs-alpha-admin-api/1)
 
 There are six main functions that the MCCS Admin API provides to admins:
 
@@ -118,6 +118,8 @@ An email address for the entity can be specified that is different from the emai
 - Contact emails sent to an entity by another entity after finding them in the directory
 - Notifications about pending or completed MC transfers to/from the entity
 
+#### Entity Status
+
 Each entity has a `status` field that drives functionality available to an entity, which can have 6 possible values:
 
 1. `pending`  - has applied to be listed in the directory
@@ -127,7 +129,11 @@ Each entity has a `status` field that drives functionality available to an entit
 5. `tradingRejected` - listed in directory but not accepted to make MC transfers
 6. `tradingAccepted` - listed in directory and able to make MC transfers
 
-Entities with a status from 3 to 6 will be listed in the public directory. Only entities with status 6 (`tradingAccepted`) will be able to make MC transfers to other entities with that same status.
+Admins are able to set each entity to any one of the six possible values above. The default value for a newly-created entity is `pending`.
+
+Entities with a status from 3 to 6 will be listed in the public directory. They will also be able to call the `POST /send-email` endpoint.
+
+Only entities with status 6 (`tradingAccepted`) will be able to make MC transfers to other entities with that same status. Also, when a `tradingAccepted` entity views the details of another `tradingAccepted` entity through either the `GET /entities` or `GET /entities/{entityID}` endpoints, the email address for the searched entity will also be returned.
 
 ### Manage Transfers
 
@@ -135,4 +141,4 @@ Although it should rarely be used, admins have the ability to transfer MC on beh
 
 ### Review Logs
 
-Logs show all actions by users and admins that change the data in MCCS' databases. IOW, all POST, PATCH and DELETE actions performed are logged stating the prior and subsequent state of all affected DB fields (for changes) or what information has been created (POSTs) or removed (DELETEs).
+Logs show all actions by users and admins that change the data in MCCS' databases. IOW, all POST, PATCH and DELETE actions performed are logged stating the prior and subsequent state of all affected DB fields (for PATCHes) or what information has been created (POSTs) or removed (DELETEs).
