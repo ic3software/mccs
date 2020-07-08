@@ -23,7 +23,7 @@ The MCCS API is based on the following data model and functionality:
 
 **Create a standalone node that anyone can use in their community**
 
-1. **DONE** - [Proof of concept](https://github.com/ic3network/mccs-alpha)
+1. **DONE** - [Prototype](https://github.com/ic3network/mccs-alpha)
     - Provide a web-based application that enables OCN members to:
         - Discover each other's products/services and needs
         - Facilitate MC transfers between them
