@@ -8,7 +8,8 @@ The mutual credit communication system (MCCS) is a web application that enables 
 > 
 > Mutual credit provides a mechanism for businesses to trade without money, via a credit clearing system. A credit clearing system is an arrangement in which a group of traders, each of whom is both a buyer and a seller, agree to allocate each other sufficient credit to facilitate their transactions within the network. [🔗](https://open.coop/collaborate/mutual-credit/)
 
-[![MCCS Video](https://img.youtube.com/vi/qlqRDdeURmo/0.jpg)](https://www.youtube.com/watch?v=qlqRDdeURmo)
+[![MCCS Video](https://img.youtube.com/vi/qlqRDdeURmo/0.jpg)](https://www.youtube.com/watch?v=qlqRDdeURmo)  
+[Watch a video of the demo](https://www.youtube.com/watch?v=qlqRDdeURmo)
 
 At its core, MCCS is an accounting system that facilitates trading amongst a group of traders who initiate mutual credit (MC) transfers between each other using the MCCS web application. Group governance could be implemented in a number of different ways (see the [Open Credit Network](https://opencredit.network) (OCN) for example), but that is beyond the scope of MCCS, which is simply the web application that facilitates trade discovery via a public directory of members and MC transfers between them.
 
